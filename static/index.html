@@ -1,0 +1,38 @@
+"""Main application entry point for the WattWise service."""
+
+from __future__ import annotations
+
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from starlette.responses import FileResponse
+
+from app.config import SETTINGS
+from app.routes.api import router as api_router
+
+app = FastAPI(
+    title=SETTINGS.app_name,
+    version=SETTINGS.app_version,
+    description=SETTINGS.app_description,
+)
+
+app.include_router(api_router)
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+@app.get("/")
+def index() -> FileResponse:
+    return FileResponse("static/index.html")
+
+
+@app.get("/health")
+def health() -> dict:
+    return {
+        "status": "ok",
+        "service": SETTINGS.app_name,
+    }
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)

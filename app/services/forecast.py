@@ -1,0 +1,161 @@
+"""Sample household and appliance data for the WattWise app."""
+
+from __future__ import annotations
+
+from typing import Dict, List
+
+from app.models import Appliance, HouseholdProfile
+
+
+def build_household_profile() -> HouseholdProfile:
+    return HouseholdProfile(
+        home_id="home_01",
+        name="Maple Grove Residence",
+        occupants=4,
+        square_feet=2400,
+        baseline_load_kw=4.2,
+        solar_capacity_kw=5.4,
+        battery_capacity_kwh=12.0,
+        tariff_schedule={
+            "off_peak": 0.11,
+            "mid_peak": 0.18,
+            "on_peak": 0.29,
+            "critical": 0.38,
+        },
+        occupancy_pattern={
+            "06:00": 0.7,
+            "09:00": 0.9,
+            "12:00": 0.6,
+            "15:00": 0.75,
+            "18:00": 1.0,
+            "21:00": 0.8,
+        },
+        weather_factor=0.12,
+        comfort_target=0.88,
+        peak_cost_multiplier=1.25,
+    )
+
+
+def build_appliances() -> List[Appliance]:
+    return [
+        Appliance(
+            id="ac_01",
+            name="Central HVAC",
+            category="HVAC",
+            power_kw=3.8,
+            duration_minutes=120,
+            preferred_window="17:00-21:00",
+            flexible=True,
+            priority=5,
+            comfort_impact=1.0,
+            peak_sensitivity=0.9,
+            smart_compatible=True,
+        ),
+        Appliance(
+            id="water_01",
+            name="Water Heater",
+            category="Water Heating",
+            power_kw=2.4,
+            duration_minutes=90,
+            preferred_window="00:00-06:00",
+            flexible=True,
+            priority=4,
+            comfort_impact=0.8,
+            peak_sensitivity=0.7,
+            smart_compatible=True,
+        ),
+        Appliance(
+            id="wash_01",
+            name="Washer Dryer",
+            category="Laundry",
+            power_kw=2.1,
+            duration_minutes=90,
+            preferred_window="20:00-23:00",
+            flexible=True,
+            priority=3,
+            comfort_impact=0.6,
+            peak_sensitivity=0.8,
+            smart_compatible=True,
+        ),
+        Appliance(
+            id="dish_01",
+            name="Dishwasher",
+            category="Kitchen",
+            power_kw=1.6,
+            duration_minutes=75,
+            preferred_window="21:00-23:00",
+            flexible=True,
+            priority=3,
+            comfort_impact=0.5,
+            peak_sensitivity=0.7,
+            smart_compatible=True,
+        ),
+        Appliance(
+            id="ev_01",
+            name="EV Charger",
+            category="EV Charging",
+            power_kw=7.2,
+            duration_minutes=180,
+            preferred_window="23:00-05:00",
+            flexible=True,
+            priority=5,
+            comfort_impact=0.9,
+            peak_sensitivity=0.95,
+            smart_compatible=True,
+        ),
+        Appliance(
+            id="pool_01",
+            name="Pool Pump",
+            category="Pool",
+            power_kw=1.3,
+            duration_minutes=120,
+            preferred_window="11:00-14:00",
+            flexible=True,
+            priority=2,
+            comfort_impact=0.4,
+            peak_sensitivity=0.5,
+            smart_compatible=True,
+        ),
+        Appliance(
+            id="dryer_01",
+            name="Clothes Dryer",
+            category="Laundry",
+            power_kw=2.7,
+            duration_minutes=60,
+            preferred_window="18:00-21:00",
+            flexible=False,
+            priority=4,
+            comfort_impact=0.9,
+            peak_sensitivity=0.82,
+            smart_compatible=False,
+        ),
+    ]
+
+
+def build_tariff_profile() -> Dict[str, float]:
+    return {
+        "00:00": 0.118,
+        "01:00": 0.118,
+        "02:00": 0.118,
+        "03:00": 0.115,
+        "04:00": 0.115,
+        "05:00": 0.12,
+        "06:00": 0.17,
+        "07:00": 0.19,
+        "08:00": 0.22,
+        "09:00": 0.24,
+        "10:00": 0.21,
+        "11:00": 0.19,
+        "12:00": 0.17,
+        "13:00": 0.19,
+        "14:00": 0.21,
+        "15:00": 0.23,
+        "16:00": 0.27,
+        "17:00": 0.31,
+        "18:00": 0.36,
+        "19:00": 0.39,
+        "20:00": 0.33,
+        "21:00": 0.27,
+        "22:00": 0.19,
+        "23:00": 0.14,
+    }

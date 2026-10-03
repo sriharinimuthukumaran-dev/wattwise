@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WattWise</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <div class="brand-mark">W</div>
+          <div>
+            <h1>WattWise</h1>
+            <p>Home Energy Intelligence</p>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-item active" href="#">Overview</a>
+          <a class="nav-item" href="#">Forecast</a>
+          <a class="nav-item" href="#">Appliances</a>
+          <a class="nav-item" href="#">Optimization</a>
+        </nav>
+
+        <div class="sidebar-card">
+          <label>Peak threshold</label>
+          <strong>6.0 kW</strong>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Operational Overview</p>
+            <h2>Smart Home Energy Dashboard</h2>
+          </div>
+          <button class="primary-button">Run Optimization</button>
+        </header>
+
+        <section class="stats-grid">
+          <article class="stat-card accent-green">
+            <span class="label">Daily usage</span>
+            <strong id="daily-usage">--</strong>
+            <small>kWh</small>
+          </article>
+
+          <article class="stat-card accent-blue">
+            <span class="label">Peak demand</span>
+            <strong id="peak-demand">--</strong>
+            <small>kW</small>
+          </article>
+
+          <article class="stat-card accent-gold">
+            <span class="label">Avg price</span>
+            <strong id="avg-price">--</strong>
+            <small>¢/kWh</small>
+          </article>
+
+          <article class="stat-card accent-purple">
+            <span class="label">Projected savings</span>
+            <strong id="projected-savings">--</strong>
+            <small>USD</small>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <div class="panel large-panel">
+            <div class="panel-header">
+              <h3>Demand Forecast</h3>
+              <span class="chip">24h view</span>
+            </div>
+            <div id="forecast-bars" class="forecast-bars"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Optimization</h3>
+              <span class="chip success">Live</span>
+            </div>
+            <ul id="recommendations-list" class="recommendations-list"></ul>
+          </div>
+        </section>
+
+        <section class="panel bottom-panel">
+          <div class="panel-header">
+            <h3>Appliance Fleet</h3>
+            <span class="chip">8 devices</span>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Appliance</th>
+                <th>Type</th>
+                <th>Load</th>
+                <th>Flexibility</th>
+                <th>Priority</th>
+              </tr>
+            </thead>
+            <tbody id="appliance-table-body"></tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
